@@ -19325,46 +19325,34 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
   });
 
-  // src/App.js
+  // src/Car.js
   const React = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
-  class App extends React.Component {
+  class Car extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {count: 0};
+      this.state = {
+        brand: "Ford",
+        model: "Mustang",
+        color: "red",
+        year: 1964
+      };
     }
-    resetCount = () => {
-      this.setState({count: 0});
-    };
-    incrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count + props.incrementAmount
-      }));
-    };
-    decrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count - props.incrementAmount
-      }));
+    changeColor = () => {
+      this.setState({color: "blue"});
     };
     render() {
-      return React.createElement("div", {
-        className: "counter"
-      }, React.createElement("h1", null, "React Counter"), React.createElement("button", {
-        onClick: this.decrementCount
-      }, "-", this.props.incrementAmount), React.createElement("span", null, this.state.count), React.createElement("button", {
-        onClick: this.incrementCount
-      }, "+", this.props.incrementAmount), React.createElement("br", null), React.createElement("br", null), React.createElement("button", {
-        onClick: this.resetCount
-      }, "Reset"));
+      return React.createElement("div", null, React.createElement("h1", null, "My ", this.state.brand), React.createElement("p", null, "It is a ", this.state.color, " ", this.state.model, " from ", this.state.year, "."), React.createElement("button", {
+        type: "button",
+        onClick: this.changeColor
+      }, "Change color"));
     }
   }
-  const App_default = App;
+  const Car_default = Car;
 
   // src/index.js
   const React2 = __toModule(require_react());
   const ReactDOM2 = __toModule(require_react_dom());
-  ReactDOM2.render(React2.createElement(App_default, {
-    incrementAmount: 1
-  }), document.getElementById("root"));
+  ReactDOM2.render(React2.createElement(Car_default, null), document.getElementById("root"));
 })();
 //# sourceMappingURL=bundle.js.map

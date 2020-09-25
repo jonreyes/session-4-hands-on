@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import Car from './Car';
 
 ReactDOM.render(
-  <App incrementAmount={1} />,
+  <Car />,
   document.getElementById('root')
 );
