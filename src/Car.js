@@ -5,22 +5,20 @@ import * as ReactDOM from 'react-dom';
 class Car extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      brand: "Ford",
-      model: "Mustang",
-      color: "red",
-      year: 1964
-    };
+    //Initialize state for car 
+    //e.g. brand/model/color/year
   }
+  
   changeColor = () => {
-    this.setState({color: "blue"});
+    // Change color state
   }
+
   render() {
     return (
       <div>
-        <h1>My {this.state.brand}</h1>
+        <h1>My "Brand"</h1>
         <p>
-          It is a {this.state.color} {this.state.model} from {this.state.year}.
+          It is a "color" "model" from "year".
         </p>
         <button
           type="button"
