@@ -1,17 +1,28 @@
+  
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //initiate state
+    this.state = { count: 0 };
   }
 
-  // Create incrementCount function for updating state to increase count
+  resetCount = () => {
+    this.setState({ count: 0 });
+  };
 
-  // Create decrementCount function for updating state to decrease count
+  incrementCount = () => {
+    this.setState((prevState, props) => ({
+      count: prevState.count + props.incrementAmount,
+    }));
+  };
 
-  // Create resetCount function for reset state to initial value
+  decrementCount = () => {
+    this.setState((prevState, props) => ({
+      count: prevState.count - props.incrementAmount,
+    }));
+  }
 
   render() {
     return (
@@ -20,7 +31,7 @@ class App extends React.Component {
           <button onClick={this.decrementCount}>
             -{this.props.incrementAmount}
           </button>
-          <span>Read current count in here</span>
+          <span>{this.state.count}</span>
           <button onClick={this.incrementCount}>
             +{this.props.incrementAmount}
           </button>
