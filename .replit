@@ -1,5 +1,5 @@
 run = """
-./node_modules/.bin/esbuild ./src/App.js \
+./node_modules/.bin/esbuild ./src/index.js \
 	--sourcemap \
 	--loader:.js=jsx \
 	--bundle \
