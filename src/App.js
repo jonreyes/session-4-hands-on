@@ -1,15 +1,34 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <div className="App">
-    <header className="App-header">
-      <img src="/logo.svg" className="App-logo" alt="logo" />
-      <h3> React on Repl.it! </h3>
-      <p>
-        Edit <code>src/App.js</code> to get started!
-      </p>
-    </header>
-  </div>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    //initiate state
+  }
+
+  // Create incrementCount function for updating state to increase count
+
+  // Create decrementCount function for updating state to decrease count
+
+  // Create resetCount function for reset state to initial value
+
+  render() {
+    return (
+        <div className="counter">
+          <h1>React Counter</h1>
+          <button onClick={this.decrementCount}>
+            -{this.props.incrementAmount}
+          </button>
+          <span>Read current count in here</span>
+          <button onClick={this.incrementCount}>
+            +{this.props.incrementAmount}
+          </button>
+          <br/><br/>
+          <button onClick={this.resetCount}>Reset</button>
+        </div>
+    );
+  }
+}
+
+export default App;
