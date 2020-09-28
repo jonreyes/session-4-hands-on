@@ -1,24 +1,26 @@
 (() => {
-  let __defineProperty = Object.defineProperty;
-  let __hasOwnProperty = Object.prototype.hasOwnProperty;
-  let __commonJS = (callback, module) => () => {
+  var __defineProperty = Object.defineProperty;
+  var __hasOwnProperty = Object.prototype.hasOwnProperty;
+  var __commonJS = (callback, module) => () => {
     if (!module) {
       module = {exports: {}};
       callback(module.exports, module);
     }
     return module.exports;
   };
-  let __markAsModule = (target) => {
+  var __markAsModule = (target) => {
     return __defineProperty(target, "__esModule", {value: true});
   };
-  let __exportStar = (target, module) => {
+  var __exportStar = (target, module) => {
     __markAsModule(target);
-    for (let key in module)
-      if (__hasOwnProperty.call(module, key) && !__hasOwnProperty.call(target, key) && key !== "default")
-        __defineProperty(target, key, {get: () => module[key], enumerable: true});
+    if (typeof module === "object" || typeof module === "function") {
+      for (let key in module)
+        if (__hasOwnProperty.call(module, key) && !__hasOwnProperty.call(target, key) && key !== "default")
+          __defineProperty(target, key, {get: () => module[key], enumerable: true});
+    }
     return target;
   };
-  let __toModule = (module) => {
+  var __toModule = (module) => {
     if (module && module.__esModule)
       return module;
     return __exportStar(__defineProperty({}, "default", {value: module, enumerable: true}), module);
@@ -26,6 +28,11 @@
 
   // node_modules/object-assign/index.js
   var require_object_assign = __commonJS((exports, module) => {
+    /*
+    object-assign
+    (c) Sindre Sorhus
+    @license MIT
+    */
     "use strict";
     var getOwnPropertySymbols = Object.getOwnPropertySymbols;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -156,6 +163,14 @@
 
   // node_modules/react/cjs/react.development.js
   var require_react_development = __commonJS((exports) => {
+    /** @license React v16.13.1
+     * react.development.js
+     *
+     * Copyright (c) Facebook, Inc. and its affiliates.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
     "use strict";
     if (true) {
       (function() {
@@ -399,14 +414,14 @@
         {
           Object.freeze(emptyObject);
         }
-        function Component2(props, context, updater) {
+        function Component(props, context, updater) {
           this.props = props;
           this.context = context;
           this.refs = emptyObject;
           this.updater = updater || ReactNoopUpdateQueue;
         }
-        Component2.prototype.isReactComponent = {};
-        Component2.prototype.setState = function(partialState, callback) {
+        Component.prototype.isReactComponent = {};
+        Component.prototype.setState = function(partialState, callback) {
           if (!(typeof partialState === "object" || typeof partialState === "function" || partialState == null)) {
             {
               throw Error("setState(...): takes an object of state variables to update or a function which returns an object of state variables.");
@@ -414,7 +429,7 @@
           }
           this.updater.enqueueSetState(this, partialState, callback, "setState");
         };
-        Component2.prototype.forceUpdate = function(callback) {
+        Component.prototype.forceUpdate = function(callback) {
           this.updater.enqueueForceUpdate(this, callback, "forceUpdate");
         };
         {
@@ -423,7 +438,7 @@
             replaceState: ["replaceState", "Refactor your code to use setState instead (see https://github.com/facebook/react/issues/3236)."]
           };
           var defineDeprecationWarning = function(methodName, info) {
-            Object.defineProperty(Component2.prototype, methodName, {
+            Object.defineProperty(Component.prototype, methodName, {
               get: function() {
                 warn("%s(...) is deprecated in plain JavaScript React classes. %s", info[0], info[1]);
                 return void 0;
@@ -438,7 +453,7 @@
         }
         function ComponentDummy() {
         }
-        ComponentDummy.prototype = Component2.prototype;
+        ComponentDummy.prototype = Component.prototype;
         function PureComponent(props, context, updater) {
           this.props = props;
           this.context = context;
@@ -447,7 +462,7 @@
         }
         var pureComponentPrototype = PureComponent.prototype = new ComponentDummy();
         pureComponentPrototype.constructor = PureComponent;
-        _assign(pureComponentPrototype, Component2.prototype);
+        _assign(pureComponentPrototype, Component.prototype);
         pureComponentPrototype.isPureReactComponent = true;
         function createRef() {
           var refObject = {
@@ -1067,7 +1082,7 @@
           }
           return dispatcher.useContext(Context, unstable_observedBits);
         }
-        function useState(initialState) {
+        function useState2(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1333,7 +1348,7 @@
           only: onlyChild
         };
         exports.Children = Children;
-        exports.Component = Component2;
+        exports.Component = Component;
         exports.Fragment = REACT_FRAGMENT_TYPE;
         exports.Profiler = REACT_PROFILER_TYPE;
         exports.PureComponent = PureComponent;
@@ -1358,7 +1373,7 @@
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
         exports.useRef = useRef;
-        exports.useState = useState;
+        exports.useState = useState2;
         exports.version = ReactVersion;
       })();
     }
@@ -1376,6 +1391,14 @@
 
   // node_modules/scheduler/cjs/scheduler.development.js
   var require_scheduler_development = __commonJS((exports) => {
+    /** @license React v0.19.1
+     * scheduler.development.js
+     *
+     * Copyright (c) Facebook, Inc. and its affiliates.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
     "use strict";
     if (true) {
       (function() {
@@ -2037,6 +2060,14 @@
 
   // node_modules/scheduler/cjs/scheduler-tracing.development.js
   var require_scheduler_tracing_development = __commonJS((exports) => {
+    /** @license React v0.19.1
+     * scheduler-tracing.development.js
+     *
+     * Copyright (c) Facebook, Inc. and its affiliates.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
     "use strict";
     if (true) {
       (function() {
@@ -2327,6 +2358,14 @@
 
   // node_modules/react-dom/cjs/react-dom.development.js
   var require_react_dom_development = __commonJS((exports) => {
+    /** @license React v16.13.1
+     * react-dom.development.js
+     *
+     * Copyright (c) Facebook, Inc. and its affiliates.
+     *
+     * This source code is licensed under the MIT license found in the
+     * LICENSE file in the root directory of this source tree.
+     */
     "use strict";
     if (true) {
       (function() {
@@ -4524,6 +4563,19 @@
           }
           return target.nodeType === TEXT_NODE ? target.parentNode : target;
         }
+        /**
+         * Checks if an event is supported in the current execution environment.
+         *
+         * NOTE: This will not work correctly for non-generic events such as `change`,
+         * `reset`, `load`, `error`, and `select`.
+         *
+         * Borrows from Modernizr.
+         *
+         * @param {string} eventNameSuffix Event name, e.g. "click".
+         * @return {boolean} True if the event is supported.
+         * @internal
+         * @license Modernizr 3.0.0pre (Custom Build) | MIT
+         */
         function isEventSupported(eventNameSuffix) {
           if (!canUseDOM) {
             return false;
@@ -9474,9 +9526,9 @@
         var contextStackCursor = createCursor(emptyContextObject);
         var didPerformWorkStackCursor = createCursor(false);
         var previousContext = emptyContextObject;
-        function getUnmaskedContext(workInProgress2, Component2, didPushOwnContextIfProvider) {
+        function getUnmaskedContext(workInProgress2, Component, didPushOwnContextIfProvider) {
           {
-            if (didPushOwnContextIfProvider && isContextProvider(Component2)) {
+            if (didPushOwnContextIfProvider && isContextProvider(Component)) {
               return previousContext;
             }
             return contextStackCursor.current;
@@ -9624,8 +9676,8 @@
                 case HostRoot:
                   return node.stateNode.context;
                 case ClassComponent: {
-                  var Component2 = node.type;
-                  if (isContextProvider(Component2)) {
+                  var Component = node.type;
+                  if (isContextProvider(Component)) {
                     return node.stateNode.__reactInternalMemoizedMergedChildContext;
                   }
                   break;
@@ -10287,10 +10339,10 @@
           }
           return false;
         }
-        function resolveDefaultProps(Component2, baseProps) {
-          if (Component2 && Component2.defaultProps) {
+        function resolveDefaultProps(Component, baseProps) {
+          if (Component && Component.defaultProps) {
             var props = _assign({}, baseProps);
-            var defaultProps = Component2.defaultProps;
+            var defaultProps = Component.defaultProps;
             for (var propName in defaultProps) {
               if (props[propName] === void 0) {
                 props[propName] = defaultProps[propName];
@@ -12035,10 +12087,10 @@
                   }
                 }
                 case FunctionComponent: {
-                  var Component2 = returnFiber.type;
+                  var Component = returnFiber.type;
                   {
                     {
-                      throw Error((Component2.displayName || Component2.name || "Component") + "(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.");
+                      throw Error((Component.displayName || Component.name || "Component") + "(...): Nothing was returned from render. This usually means a return statement is missing. Or, to render nothing, return null.");
                     }
                   }
                 }
@@ -12316,7 +12368,7 @@
           }
           return true;
         }
-        function renderWithHooks(current2, workInProgress2, Component2, props, secondArg, nextRenderExpirationTime) {
+        function renderWithHooks(current2, workInProgress2, Component, props, secondArg, nextRenderExpirationTime) {
           renderExpirationTime = nextRenderExpirationTime;
           currentlyRenderingFiber$1 = workInProgress2;
           {
@@ -12336,7 +12388,7 @@
               ReactCurrentDispatcher.current = HooksDispatcherOnMountInDEV;
             }
           }
-          var children = Component2(props, secondArg);
+          var children = Component(props, secondArg);
           if (workInProgress2.expirationTime === renderExpirationTime) {
             var numberOfReRenders = 0;
             do {
@@ -12357,7 +12409,7 @@
                 hookTypesUpdateIndexDev = -1;
               }
               ReactCurrentDispatcher.current = HooksDispatcherOnRerenderInDEV;
-              children = Component2(props, secondArg);
+              children = Component(props, secondArg);
             } while (workInProgress2.expirationTime === renderExpirationTime);
           }
           ReactCurrentDispatcher.current = ContextOnlyDispatcher;
@@ -13914,16 +13966,16 @@
           workInProgress2.child = reconcileChildFibers(workInProgress2, current2.child, null, renderExpirationTime2);
           workInProgress2.child = reconcileChildFibers(workInProgress2, null, nextChildren, renderExpirationTime2);
         }
-        function updateForwardRef(current2, workInProgress2, Component2, nextProps, renderExpirationTime2) {
+        function updateForwardRef(current2, workInProgress2, Component, nextProps, renderExpirationTime2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component2.propTypes;
+              var innerPropTypes = Component.propTypes;
               if (innerPropTypes) {
-                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component2), getCurrentFiberStackInDev);
+                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component), getCurrentFiberStackInDev);
               }
             }
           }
-          var render3 = Component2.render;
+          var render3 = Component.render;
           var ref = workInProgress2.ref;
           var nextChildren;
           prepareToReadContext(workInProgress2, renderExpirationTime2);
@@ -13946,10 +13998,10 @@
           reconcileChildren(current2, workInProgress2, nextChildren, renderExpirationTime2);
           return workInProgress2.child;
         }
-        function updateMemoComponent(current2, workInProgress2, Component2, nextProps, updateExpirationTime, renderExpirationTime2) {
+        function updateMemoComponent(current2, workInProgress2, Component, nextProps, updateExpirationTime, renderExpirationTime2) {
           if (current2 === null) {
-            var type = Component2.type;
-            if (isSimpleFunctionComponent(type) && Component2.compare === null && Component2.defaultProps === void 0) {
+            var type = Component.type;
+            if (isSimpleFunctionComponent(type) && Component.compare === null && Component.defaultProps === void 0) {
               var resolvedType = type;
               {
                 resolvedType = resolveFunctionForHotReloading(type);
@@ -13967,14 +14019,14 @@
                 checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(type), getCurrentFiberStackInDev);
               }
             }
-            var child = createFiberFromTypeAndProps(Component2.type, null, nextProps, null, workInProgress2.mode, renderExpirationTime2);
+            var child = createFiberFromTypeAndProps(Component.type, null, nextProps, null, workInProgress2.mode, renderExpirationTime2);
             child.ref = workInProgress2.ref;
             child.return = workInProgress2;
             workInProgress2.child = child;
             return child;
           }
           {
-            var _type = Component2.type;
+            var _type = Component.type;
             var _innerPropTypes = _type.propTypes;
             if (_innerPropTypes) {
               checkPropTypes(_innerPropTypes, nextProps, "prop", getComponentName(_type), getCurrentFiberStackInDev);
@@ -13983,7 +14035,7 @@
           var currentChild = current2.child;
           if (updateExpirationTime < renderExpirationTime2) {
             var prevProps = currentChild.memoizedProps;
-            var compare = Component2.compare;
+            var compare = Component.compare;
             compare = compare !== null ? compare : shallowEqual;
             if (compare(prevProps, nextProps) && current2.ref === workInProgress2.ref) {
               return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderExpirationTime2);
@@ -13996,7 +14048,7 @@
           workInProgress2.child = newChild;
           return newChild;
         }
-        function updateSimpleMemoComponent(current2, workInProgress2, Component2, nextProps, updateExpirationTime, renderExpirationTime2) {
+        function updateSimpleMemoComponent(current2, workInProgress2, Component, nextProps, updateExpirationTime, renderExpirationTime2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
               var outerMemoType = workInProgress2.elementType;
@@ -14019,7 +14071,7 @@
               }
             }
           }
-          return updateFunctionComponent(current2, workInProgress2, Component2, nextProps, renderExpirationTime2);
+          return updateFunctionComponent(current2, workInProgress2, Component, nextProps, renderExpirationTime2);
         }
         function updateFragment(current2, workInProgress2, renderExpirationTime2) {
           var nextChildren = workInProgress2.pendingProps;
@@ -14046,18 +14098,18 @@
             workInProgress2.effectTag |= Ref;
           }
         }
-        function updateFunctionComponent(current2, workInProgress2, Component2, nextProps, renderExpirationTime2) {
+        function updateFunctionComponent(current2, workInProgress2, Component, nextProps, renderExpirationTime2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component2.propTypes;
+              var innerPropTypes = Component.propTypes;
               if (innerPropTypes) {
-                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component2), getCurrentFiberStackInDev);
+                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component), getCurrentFiberStackInDev);
               }
             }
           }
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component2, true);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component, true);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           var nextChildren;
@@ -14065,10 +14117,10 @@
           {
             ReactCurrentOwner$1.current = workInProgress2;
             setIsRendering(true);
-            nextChildren = renderWithHooks(current2, workInProgress2, Component2, nextProps, context, renderExpirationTime2);
+            nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context, renderExpirationTime2);
             if (workInProgress2.mode & StrictMode) {
               if (workInProgress2.memoizedState !== null) {
-                nextChildren = renderWithHooks(current2, workInProgress2, Component2, nextProps, context, renderExpirationTime2);
+                nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context, renderExpirationTime2);
               }
             }
             setIsRendering(false);
@@ -14081,17 +14133,17 @@
           reconcileChildren(current2, workInProgress2, nextChildren, renderExpirationTime2);
           return workInProgress2.child;
         }
-        function updateClassComponent(current2, workInProgress2, Component2, nextProps, renderExpirationTime2) {
+        function updateClassComponent(current2, workInProgress2, Component, nextProps, renderExpirationTime2) {
           {
             if (workInProgress2.type !== workInProgress2.elementType) {
-              var innerPropTypes = Component2.propTypes;
+              var innerPropTypes = Component.propTypes;
               if (innerPropTypes) {
-                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component2), getCurrentFiberStackInDev);
+                checkPropTypes(innerPropTypes, nextProps, "prop", getComponentName(Component), getCurrentFiberStackInDev);
               }
             }
           }
           var hasContext;
-          if (isContextProvider(Component2)) {
+          if (isContextProvider(Component)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
@@ -14106,15 +14158,15 @@
               workInProgress2.alternate = null;
               workInProgress2.effectTag |= Placement;
             }
-            constructClassInstance(workInProgress2, Component2, nextProps);
-            mountClassInstance(workInProgress2, Component2, nextProps, renderExpirationTime2);
+            constructClassInstance(workInProgress2, Component, nextProps);
+            mountClassInstance(workInProgress2, Component, nextProps, renderExpirationTime2);
             shouldUpdate = true;
           } else if (current2 === null) {
-            shouldUpdate = resumeMountClassInstance(workInProgress2, Component2, nextProps, renderExpirationTime2);
+            shouldUpdate = resumeMountClassInstance(workInProgress2, Component, nextProps, renderExpirationTime2);
           } else {
-            shouldUpdate = updateClassInstance(current2, workInProgress2, Component2, nextProps, renderExpirationTime2);
+            shouldUpdate = updateClassInstance(current2, workInProgress2, Component, nextProps, renderExpirationTime2);
           }
-          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component2, shouldUpdate, hasContext, renderExpirationTime2);
+          var nextUnitOfWork = finishClassComponent(current2, workInProgress2, Component, shouldUpdate, hasContext, renderExpirationTime2);
           {
             var inst = workInProgress2.stateNode;
             if (inst.props !== nextProps) {
@@ -14126,19 +14178,19 @@
           }
           return nextUnitOfWork;
         }
-        function finishClassComponent(current2, workInProgress2, Component2, shouldUpdate, hasContext, renderExpirationTime2) {
+        function finishClassComponent(current2, workInProgress2, Component, shouldUpdate, hasContext, renderExpirationTime2) {
           markRef(current2, workInProgress2);
           var didCaptureError = (workInProgress2.effectTag & DidCapture) !== NoEffect;
           if (!shouldUpdate && !didCaptureError) {
             if (hasContext) {
-              invalidateContextProvider(workInProgress2, Component2, false);
+              invalidateContextProvider(workInProgress2, Component, false);
             }
             return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderExpirationTime2);
           }
           var instance = workInProgress2.stateNode;
           ReactCurrentOwner$1.current = workInProgress2;
           var nextChildren;
-          if (didCaptureError && typeof Component2.getDerivedStateFromError !== "function") {
+          if (didCaptureError && typeof Component.getDerivedStateFromError !== "function") {
             nextChildren = null;
             {
               stopProfilerTimerIfRunning();
@@ -14161,7 +14213,7 @@
           }
           workInProgress2.memoizedState = instance.state;
           if (hasContext) {
-            invalidateContextProvider(workInProgress2, Component2, true);
+            invalidateContextProvider(workInProgress2, Component, true);
           }
           return workInProgress2.child;
         }
@@ -14248,61 +14300,61 @@
           }
           var props = workInProgress2.pendingProps;
           cancelWorkTimer(workInProgress2);
-          var Component2 = readLazyComponentType(elementType);
-          workInProgress2.type = Component2;
-          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component2);
+          var Component = readLazyComponentType(elementType);
+          workInProgress2.type = Component;
+          var resolvedTag = workInProgress2.tag = resolveLazyComponentTag(Component);
           startWorkTimer(workInProgress2);
-          var resolvedProps = resolveDefaultProps(Component2, props);
+          var resolvedProps = resolveDefaultProps(Component, props);
           var child;
           switch (resolvedTag) {
             case FunctionComponent: {
               {
-                validateFunctionComponentInDev(workInProgress2, Component2);
-                workInProgress2.type = Component2 = resolveFunctionForHotReloading(Component2);
+                validateFunctionComponentInDev(workInProgress2, Component);
+                workInProgress2.type = Component = resolveFunctionForHotReloading(Component);
               }
-              child = updateFunctionComponent(null, workInProgress2, Component2, resolvedProps, renderExpirationTime2);
+              child = updateFunctionComponent(null, workInProgress2, Component, resolvedProps, renderExpirationTime2);
               return child;
             }
             case ClassComponent: {
               {
-                workInProgress2.type = Component2 = resolveClassForHotReloading(Component2);
+                workInProgress2.type = Component = resolveClassForHotReloading(Component);
               }
-              child = updateClassComponent(null, workInProgress2, Component2, resolvedProps, renderExpirationTime2);
+              child = updateClassComponent(null, workInProgress2, Component, resolvedProps, renderExpirationTime2);
               return child;
             }
             case ForwardRef: {
               {
-                workInProgress2.type = Component2 = resolveForwardRefForHotReloading(Component2);
+                workInProgress2.type = Component = resolveForwardRefForHotReloading(Component);
               }
-              child = updateForwardRef(null, workInProgress2, Component2, resolvedProps, renderExpirationTime2);
+              child = updateForwardRef(null, workInProgress2, Component, resolvedProps, renderExpirationTime2);
               return child;
             }
             case MemoComponent: {
               {
                 if (workInProgress2.type !== workInProgress2.elementType) {
-                  var outerPropTypes = Component2.propTypes;
+                  var outerPropTypes = Component.propTypes;
                   if (outerPropTypes) {
-                    checkPropTypes(outerPropTypes, resolvedProps, "prop", getComponentName(Component2), getCurrentFiberStackInDev);
+                    checkPropTypes(outerPropTypes, resolvedProps, "prop", getComponentName(Component), getCurrentFiberStackInDev);
                   }
                 }
               }
-              child = updateMemoComponent(null, workInProgress2, Component2, resolveDefaultProps(Component2.type, resolvedProps), updateExpirationTime, renderExpirationTime2);
+              child = updateMemoComponent(null, workInProgress2, Component, resolveDefaultProps(Component.type, resolvedProps), updateExpirationTime, renderExpirationTime2);
               return child;
             }
           }
           var hint = "";
           {
-            if (Component2 !== null && typeof Component2 === "object" && Component2.$$typeof === REACT_LAZY_TYPE) {
+            if (Component !== null && typeof Component === "object" && Component.$$typeof === REACT_LAZY_TYPE) {
               hint = " Did you wrap a component in React.lazy() more than once?";
             }
           }
           {
             {
-              throw Error("Element type is invalid. Received a promise that resolves to: " + Component2 + ". Lazy element type must resolve to a class or function." + hint);
+              throw Error("Element type is invalid. Received a promise that resolves to: " + Component + ". Lazy element type must resolve to a class or function." + hint);
             }
           }
         }
-        function mountIncompleteClassComponent(_current, workInProgress2, Component2, nextProps, renderExpirationTime2) {
+        function mountIncompleteClassComponent(_current, workInProgress2, Component, nextProps, renderExpirationTime2) {
           if (_current !== null) {
             _current.alternate = null;
             workInProgress2.alternate = null;
@@ -14310,18 +14362,18 @@
           }
           workInProgress2.tag = ClassComponent;
           var hasContext;
-          if (isContextProvider(Component2)) {
+          if (isContextProvider(Component)) {
             hasContext = true;
             pushContextProvider(workInProgress2);
           } else {
             hasContext = false;
           }
           prepareToReadContext(workInProgress2, renderExpirationTime2);
-          constructClassInstance(workInProgress2, Component2, nextProps);
-          mountClassInstance(workInProgress2, Component2, nextProps, renderExpirationTime2);
-          return finishClassComponent(null, workInProgress2, Component2, true, hasContext, renderExpirationTime2);
+          constructClassInstance(workInProgress2, Component, nextProps);
+          mountClassInstance(workInProgress2, Component, nextProps, renderExpirationTime2);
+          return finishClassComponent(null, workInProgress2, Component, true, hasContext, renderExpirationTime2);
         }
-        function mountIndeterminateComponent(_current, workInProgress2, Component2, renderExpirationTime2) {
+        function mountIndeterminateComponent(_current, workInProgress2, Component, renderExpirationTime2) {
           if (_current !== null) {
             _current.alternate = null;
             workInProgress2.alternate = null;
@@ -14330,14 +14382,14 @@
           var props = workInProgress2.pendingProps;
           var context;
           {
-            var unmaskedContext = getUnmaskedContext(workInProgress2, Component2, false);
+            var unmaskedContext = getUnmaskedContext(workInProgress2, Component, false);
             context = getMaskedContext(workInProgress2, unmaskedContext);
           }
           prepareToReadContext(workInProgress2, renderExpirationTime2);
           var value;
           {
-            if (Component2.prototype && typeof Component2.prototype.render === "function") {
-              var componentName = getComponentName(Component2) || "Unknown";
+            if (Component.prototype && typeof Component.prototype.render === "function") {
+              var componentName = getComponentName(Component) || "Unknown";
               if (!didWarnAboutBadClass[componentName]) {
                 error("The <%s /> component appears to have a render method, but doesn't extend React.Component. This is likely to cause errors. Change %s to extend React.Component instead.", componentName, componentName);
                 didWarnAboutBadClass[componentName] = true;
@@ -14348,13 +14400,13 @@
             }
             setIsRendering(true);
             ReactCurrentOwner$1.current = workInProgress2;
-            value = renderWithHooks(null, workInProgress2, Component2, props, context, renderExpirationTime2);
+            value = renderWithHooks(null, workInProgress2, Component, props, context, renderExpirationTime2);
             setIsRendering(false);
           }
           workInProgress2.effectTag |= PerformedWork;
           if (typeof value === "object" && value !== null && typeof value.render === "function" && value.$$typeof === void 0) {
             {
-              var _componentName = getComponentName(Component2) || "Unknown";
+              var _componentName = getComponentName(Component) || "Unknown";
               if (!didWarnAboutModulePatternComponent[_componentName]) {
                 error("The <%s /> component appears to be a function component that returns a class instance. Change %s to a class that extends React.Component instead. If you can't use a class try assigning the prototype on the function as a workaround. `%s.prototype = React.Component.prototype`. Don't use an arrow function since it cannot be called with `new` by React.", _componentName, _componentName, _componentName);
                 didWarnAboutModulePatternComponent[_componentName] = true;
@@ -14364,7 +14416,7 @@
             workInProgress2.memoizedState = null;
             workInProgress2.updateQueue = null;
             var hasContext = false;
-            if (isContextProvider(Component2)) {
+            if (isContextProvider(Component)) {
               hasContext = true;
               pushContextProvider(workInProgress2);
             } else {
@@ -14372,34 +14424,34 @@
             }
             workInProgress2.memoizedState = value.state !== null && value.state !== void 0 ? value.state : null;
             initializeUpdateQueue(workInProgress2);
-            var getDerivedStateFromProps = Component2.getDerivedStateFromProps;
+            var getDerivedStateFromProps = Component.getDerivedStateFromProps;
             if (typeof getDerivedStateFromProps === "function") {
-              applyDerivedStateFromProps(workInProgress2, Component2, getDerivedStateFromProps, props);
+              applyDerivedStateFromProps(workInProgress2, Component, getDerivedStateFromProps, props);
             }
             adoptClassInstance(workInProgress2, value);
-            mountClassInstance(workInProgress2, Component2, props, renderExpirationTime2);
-            return finishClassComponent(null, workInProgress2, Component2, true, hasContext, renderExpirationTime2);
+            mountClassInstance(workInProgress2, Component, props, renderExpirationTime2);
+            return finishClassComponent(null, workInProgress2, Component, true, hasContext, renderExpirationTime2);
           } else {
             workInProgress2.tag = FunctionComponent;
             {
               if (workInProgress2.mode & StrictMode) {
                 if (workInProgress2.memoizedState !== null) {
-                  value = renderWithHooks(null, workInProgress2, Component2, props, context, renderExpirationTime2);
+                  value = renderWithHooks(null, workInProgress2, Component, props, context, renderExpirationTime2);
                 }
               }
             }
             reconcileChildren(null, workInProgress2, value, renderExpirationTime2);
             {
-              validateFunctionComponentInDev(workInProgress2, Component2);
+              validateFunctionComponentInDev(workInProgress2, Component);
             }
             return workInProgress2.child;
           }
         }
-        function validateFunctionComponentInDev(workInProgress2, Component2) {
+        function validateFunctionComponentInDev(workInProgress2, Component) {
           {
-            if (Component2) {
-              if (Component2.childContextTypes) {
-                error("%s(...): childContextTypes cannot be defined on a function component.", Component2.displayName || Component2.name || "Component");
+            if (Component) {
+              if (Component.childContextTypes) {
+                error("%s(...): childContextTypes cannot be defined on a function component.", Component.displayName || Component.name || "Component");
               }
             }
             if (workInProgress2.ref !== null) {
@@ -14418,15 +14470,15 @@
                 error("Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?%s", info);
               }
             }
-            if (typeof Component2.getDerivedStateFromProps === "function") {
-              var _componentName2 = getComponentName(Component2) || "Unknown";
+            if (typeof Component.getDerivedStateFromProps === "function") {
+              var _componentName2 = getComponentName(Component) || "Unknown";
               if (!didWarnAboutGetDerivedStateOnFunctionComponent[_componentName2]) {
                 error("%s: Function components do not support getDerivedStateFromProps.", _componentName2);
                 didWarnAboutGetDerivedStateOnFunctionComponent[_componentName2] = true;
               }
             }
-            if (typeof Component2.contextType === "object" && Component2.contextType !== null) {
-              var _componentName3 = getComponentName(Component2) || "Unknown";
+            if (typeof Component.contextType === "object" && Component.contextType !== null) {
+              var _componentName3 = getComponentName(Component) || "Unknown";
               if (!didWarnAboutContextTypeOnFunctionComponent[_componentName3]) {
                 error("%s: Function components do not support contextType.", _componentName3);
                 didWarnAboutContextTypeOnFunctionComponent[_componentName3] = true;
@@ -14972,8 +15024,8 @@
                   }
                   break;
                 case ClassComponent: {
-                  var Component2 = workInProgress2.type;
-                  if (isContextProvider(Component2)) {
+                  var Component = workInProgress2.type;
+                  if (isContextProvider(Component)) {
                     pushContextProvider(workInProgress2);
                   }
                   break;
@@ -15237,8 +15289,8 @@
             case MemoComponent:
               return null;
             case ClassComponent: {
-              var Component2 = workInProgress2.type;
-              if (isContextProvider(Component2)) {
+              var Component = workInProgress2.type;
+              if (isContextProvider(Component)) {
                 popContext(workInProgress2);
               }
               return null;
@@ -15499,8 +15551,8 @@
         function unwindWork(workInProgress2, renderExpirationTime2) {
           switch (workInProgress2.tag) {
             case ClassComponent: {
-              var Component2 = workInProgress2.type;
-              if (isContextProvider(Component2)) {
+              var Component = workInProgress2.type;
+              if (isContextProvider(Component)) {
                 popContext(workInProgress2);
               }
               var effectTag = workInProgress2.effectTag;
@@ -18303,18 +18355,18 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         var createFiber = function(tag, pendingProps, key, mode) {
           return new FiberNode(tag, pendingProps, key, mode);
         };
-        function shouldConstruct(Component2) {
-          var prototype = Component2.prototype;
+        function shouldConstruct(Component) {
+          var prototype = Component.prototype;
           return !!(prototype && prototype.isReactComponent);
         }
         function isSimpleFunctionComponent(type) {
           return typeof type === "function" && !shouldConstruct(type) && type.defaultProps === void 0;
         }
-        function resolveLazyComponentTag(Component2) {
-          if (typeof Component2 === "function") {
-            return shouldConstruct(Component2) ? ClassComponent : FunctionComponent;
-          } else if (Component2 !== void 0 && Component2 !== null) {
-            var $$typeof = Component2.$$typeof;
+        function resolveLazyComponentTag(Component) {
+          if (typeof Component === "function") {
+            return shouldConstruct(Component) ? ClassComponent : FunctionComponent;
+          } else if (Component !== void 0 && Component !== null) {
+            var $$typeof = Component.$$typeof;
             if ($$typeof === REACT_FORWARD_REF_TYPE) {
               return ForwardRef;
             }
@@ -18746,9 +18798,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           var fiber = get(parentComponent);
           var parentContext = findCurrentUnmaskedContext(fiber);
           if (fiber.tag === ClassComponent) {
-            var Component2 = fiber.type;
-            if (isContextProvider(Component2)) {
-              return processChildContext(fiber, Component2, parentContext);
+            var Component = fiber.type;
+            if (isContextProvider(Component)) {
+              return processChildContext(fiber, Component, parentContext);
             }
           }
           return parentContext;
@@ -19327,43 +19379,33 @@ For more info, visit https://fb.me/react-mock-scheduler`);
 
   // src/App.js
   const React = __toModule(require_react());
-  const ReactDOM = __toModule(require_react_dom());
-  class App extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {count: 0};
-    }
-    resetCount = () => {
-      this.setState({count: 0});
+  const App = ({incrementAmount}) => {
+    const [count, setCount] = React.useState(0);
+    const resetCount = () => {
+      setCount(0);
     };
-    incrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count + props.incrementAmount
-      }));
+    const incrementCount = () => {
+      setCount(count + 1);
     };
-    decrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count - props.incrementAmount
-      }));
+    const decrementCount = () => {
+      setCount(count - 1);
     };
-    render() {
-      return React.createElement("div", {
-        className: "counter"
-      }, React.createElement("h1", null, "React Counter"), React.createElement("button", {
-        onClick: this.decrementCount
-      }, "-", this.props.incrementAmount), React.createElement("span", null, this.state.count), React.createElement("button", {
-        onClick: this.incrementCount
-      }, "+", this.props.incrementAmount), React.createElement("br", null), React.createElement("br", null), React.createElement("button", {
-        onClick: this.resetCount
-      }, "Reset"));
-    }
-  }
-  const App_default = App;
+    return /* @__PURE__ */ React.createElement("div", {
+      className: "counter"
+    }, /* @__PURE__ */ React.createElement("h1", null, "React Counter"), /* @__PURE__ */ React.createElement("button", {
+      onClick: decrementCount
+    }, "-", incrementAmount), /* @__PURE__ */ React.createElement("span", null, count), /* @__PURE__ */ React.createElement("button", {
+      onClick: incrementCount
+    }, "+", incrementAmount), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("button", {
+      onClick: resetCount
+    }, "Reset"));
+  };
+  var App_default = App;
 
   // src/index.js
   const React2 = __toModule(require_react());
-  const ReactDOM2 = __toModule(require_react_dom());
-  ReactDOM2.render(React2.createElement(App_default, {
+  const ReactDOM = __toModule(require_react_dom());
+  ReactDOM.render(/* @__PURE__ */ React2.createElement(App_default, {
     incrementAmount: 1
   }), document.getElementById("root"));
 })();

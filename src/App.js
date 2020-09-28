@@ -4,30 +4,30 @@ import * as React from 'react';
 const App = ({ incrementAmount }) => {
   const [count, setCount] = React.useState(0);
 
-  resetCount = () => {
+  const resetCount = () => {
     setCount(0);
   };
 
-  incrementCount = () => {
+  const incrementCount = () => {
     setCount(count + 1);
   };
 
-  decrementCount = () => {
+  const decrementCount = () => {
     setCount(count - 1);
   };
 
   return (
     <div className="counter">
       <h1>React Counter</h1>
-      <button onClick={this.decrementCount}>
+      <button onClick={decrementCount}>
         -{incrementAmount}
       </button>
       <span>{count}</span>
-      <button onClick={this.incrementCount}>
+      <button onClick={incrementCount}>
         +{incrementAmount}
       </button>
       <br /><br />
-      <button onClick={this.resetCount}>Reset</button>
+      <button onClick={resetCount}>Reset</button>
     </div>
   );
 }
