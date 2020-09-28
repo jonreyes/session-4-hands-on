@@ -19386,8 +19386,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       if (isSelected) {
         buttonClassName = "video selected";
       }
+      handleClick = () => {
+        if (!this.props.isSelected) {
+          this.props.onClick(this.props.index);
+        }
+      };
       return React2.createElement("div", {
-        className: buttonClassName
+        className: buttonClassName,
+        onClick: this.handleClick
       }, React2.createElement("img", {
         src: `${videoImage}`,
         alt: "",
@@ -19405,7 +19411,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     render() {
       var {
         videos,
-        selectedVideoIndex
+        selectedVideoIndex,
+        onVideoButtonClick
       } = this.props;
       return React3.createElement("div", {
         className: "video-list"
@@ -19417,7 +19424,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
           videoImage: img,
           videoDescription: description,
           index,
-          isSelected
+          isSelected,
+          onClick: onVideoButtonClick
         });
       }));
     }
@@ -19429,10 +19437,17 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   class VideoPlayer2 extends React4.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        selectedVideoIndex: 0
+      };
     }
+    handleVideoButtonClick = (index) => {
+      console.log("index", index);
+      this.setState({selectedVideoIndex: index});
+    };
     render() {
       var videos = videosList;
-      var selectedVideoIndex = 0;
+      var {selectedVideoIndex} = this.state;
       var id = getVideoIdFromPageUrl(videos[selectedVideoIndex].url);
       console.log(videos);
       var rootClassName = "container-section";
@@ -19451,7 +19466,8 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         allowFullScreen: true
       })), React4.createElement(VideoList_default, {
         videos,
-        selectedVideoIndex
+        selectedVideoIndex,
+        onVideoButtonClick: this.handleVideoButtonClick
       }));
     }
   }

@@ -2,11 +2,12 @@ import * as React from 'react';
 import VideoButton from './VideoButton.js';
 
 class VideoList extends React.Component {
-
+  
     render() {
         var {
             videos,
             selectedVideoIndex,
+            onVideoButtonClick,
         } = this.props;
 
         return (
@@ -23,6 +24,7 @@ class VideoList extends React.Component {
                                 videoDescription={description}
                                 index={index}
                                 isSelected={isSelected}
+                                onClick={onVideoButtonClick}
                             />
                         );
                     })

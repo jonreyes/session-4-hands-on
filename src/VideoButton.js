@@ -16,12 +16,18 @@ class VideoButton extends React.Component {
         if (isSelected) {
             buttonClassName = 'video selected';
         }
-        
+      
+        handleClick = () => {
+          if (!this.props.isSelected) {
+            this.props.onClick(this.props.index);
+          }
+        };
       // Make sure you pass the right prop values in the blanks provided
 
         return (
             <div
                 className={buttonClassName}
+                onClick={this.handleClick}
             >
                 <img src={`${videoImage}`} alt="" className="video-image" />
                     <div className="description">
