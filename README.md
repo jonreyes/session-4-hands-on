@@ -1,17 +1,16 @@
 ## React State Management Hands-On Tutorials
 
 
-## Hands-On 2
+## Hands-On 4
 
-In this hands-on exercise, we will be learning how to create a simple React counter app by using state. 
+In this hands-on exercise, we will be learning how to create a Redux version of counter app by creating a store, setting up Redux, writting a reducer and so on. 
 This exercise will contain 3 parts.
 
 # Part 1
-We will create state object and initialize it in the constructor.
-The state object will store the value for our count.
+We will create a Redux store, wrap the react app with Provider and setting up Redux.
 
 # Part 2
-We will read the current count by using the ```this.state.count```, and display it on the UI.
+We will create our Reducer function to tell Redux what our state should look like
 
 # Part 3
-We will create 3 functions to increase, decrease, and reset the count to initial value by updating the state via setState.
+We will create the Counter component, and connect it with Redux store. Then create 3 functions to dispatch 3 types of actions (increase, decrease, and reset) to the store, and render the current count value.
