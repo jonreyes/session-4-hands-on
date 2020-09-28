@@ -5,15 +5,15 @@ import { connect } from 'react-redux';
 
 class Counter extends React.Component {
   increment = () => {
-    this.props.dispatch({ type: 'INCREMENT' });
+    // this.props.dispatch({ type: 'INCREMENT' });
   }
 
   decrement = () => {
-    this.props.dispatch({ type: 'DECREMENT' });
+    // this.props.dispatch({ type: 'DECREMENT' });
   }
 
   reset = () => {
-    this.props.dispatch({ type: 'RESET' });
+    // this.props.dispatch({ type: 'RESET' });
   }
 
   render() {
@@ -32,10 +32,10 @@ class Counter extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    count: state.count
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     count: state.count
+//   };
+// }
 
 export default connect(mapStateToProps)(Counter);
