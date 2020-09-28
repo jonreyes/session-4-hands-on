@@ -10,7 +10,7 @@ This exercise will contain 3 parts.
 We will create a Redux store, wrap the react app with Provider and setting up Redux.
 
 # Part 2
-We will create our Reducer function to tell Redux what our state should look like
+We will create our Reducer function to tell Redux what our state should look like.
 
 # Part 3
 We will create the Counter component, and connect it with Redux store. Then create 3 functions to dispatch 3 types of actions (increase, decrease, and reset) to the store, and render the current count value.
