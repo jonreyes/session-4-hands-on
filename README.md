@@ -1,3 +1,8 @@
+# Hands-On Exercise 3
+
+1. In [App.js](./src/App.js), update the class component to a function component
+2. Update the counter state and resetCount, incrementCount, and decrementCount functions to be hooks functions for updating the count state instead
+
 ## Repl.it React.js Template
 
 A lightweight and super fast React.js template. Powered by [esbuild](https://github.com/evanw/esbuild). A few things about it:
