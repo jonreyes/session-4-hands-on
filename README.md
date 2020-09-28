@@ -1,23 +1,8 @@
-## Repl.it React.js Template
+# Ask Apps Academy - Session 4 Take Home Assignment
 
-A lightweight and super fast React.js template. Powered by [esbuild](https://github.com/evanw/esbuild). A few things about it:
+### Summary:
+In this exercise, you will enhance and add some new feature to the React video player app which we created in session 3
 
-- Entry file is `src/App.js`, where React is initialized
-- Public files like html, css, and images should go under `/public`
-- JavaScript files should live under `src`
+The necessary components and styling for the application has already been provided, but there are several parts of the application logic that don't work yet.
 
-## Development process
-
-- Simply write code, add files, etc and hit run
-- Esbuild will build your app and if there is an error you'll see it in the console
-- If the build is successful you'll see the web output pane refresh
-
-## npm packages
-
-This templates comes with the following dependencies and are installed as part of the project so you're free to change, upgrade, or replace them:
-
-- [esbuild](https://github.com/evanw/esbuild): JavaScript compiler & bundler
-- [static-here](https://github.com/amasad/static-here): is a tiny static server
-- react and react-dom: because it's a React.js template :-)
-
-To add more packages, whether React.js components, or anything else, you can simply `import` the package and Repl.it will find it and install it for you. You can also use the package manager in the sidebar. Read more about packages in Repl.it [here](https://docs.repl.it/repls/packages).
+The VideoList component renders a collection of VideoButton components. But currently, it doesn't provide user the ability to change or select a video they want to play. We would like to add that feature by using and updating React State we learnt in Session 4.
