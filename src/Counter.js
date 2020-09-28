@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-class App extends React.Component {
+class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
@@ -42,4 +42,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Counter;

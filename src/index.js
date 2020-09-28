@@ -1,8 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import App from './App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import counterReducer from './counterReducer';
+import Counter from './Counter';
+
+const store = createStore(reducer);
 
 ReactDOM.render(
-  <App incrementAmount={1} />,
-  document.getElementById('root')
+  <Provider store={store}>
+    <Counter />
+  </Provider>, document.getElementById('root')
 );
