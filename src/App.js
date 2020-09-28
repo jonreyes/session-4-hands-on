@@ -1,45 +1,35 @@
   
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
-  }
+const App = ({ incrementAmount }) => {
+  const [count, setCount] = React.useState(0);
 
   resetCount = () => {
-    this.setState({ count: 0 });
+    setCount(0);
   };
 
   incrementCount = () => {
-    this.setState((prevState, props) => ({
-      count: prevState.count + props.incrementAmount,
-    }));
+    setCount(count + 1);
   };
 
   decrementCount = () => {
-    this.setState((prevState, props) => ({
-      count: prevState.count - props.incrementAmount,
-    }));
-  }
+    setCount(count - 1);
+  };
 
-  render() {
-    return (
-        <div className="counter">
-          <h1>React Counter</h1>
-          <button onClick={this.decrementCount}>
-            -{this.props.incrementAmount}
-          </button>
-          <span>{this.state.count}</span>
-          <button onClick={this.incrementCount}>
-            +{this.props.incrementAmount}
-          </button>
-          <br/><br/>
-          <button onClick={this.resetCount}>Reset</button>
-        </div>
-    );
-  }
+  return (
+    <div className="counter">
+      <h1>React Counter</h1>
+      <button onClick={this.decrementCount}>
+        -{incrementAmount}
+      </button>
+      <span>{count}</span>
+      <button onClick={this.incrementCount}>
+        +{incrementAmount}
+      </button>
+      <br /><br />
+      <button onClick={this.resetCount}>Reset</button>
+    </div>
+  );
 }
 
 export default App;
