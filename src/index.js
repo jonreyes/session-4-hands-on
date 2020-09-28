@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import counterReducer from './counterReducer';
 import Counter from './Counter';
 
-const store = createStore(reducer);
+const store = createStore(counterReducer);
 
 ReactDOM.render(
   <Provider store={store}>

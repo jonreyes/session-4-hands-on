@@ -1,45 +1,41 @@
   
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: 0 };
+  increment = () => {
+    this.props.dispatch({ type: 'INCREMENT' });
   }
 
-  resetCount = () => {
-    this.setState({ count: 0 });
-  };
+  decrement = () => {
+    this.props.dispatch({ type: 'DECREMENT' });
+  }
 
-  incrementCount = () => {
-    this.setState((prevState, props) => ({
-      count: prevState.count + props.incrementAmount,
-    }));
-  };
-
-  decrementCount = () => {
-    this.setState((prevState, props) => ({
-      count: prevState.count - props.incrementAmount,
-    }));
+  reset = () => {
+    this.props.dispatch({ type: 'RESET' });
   }
 
   render() {
     return (
-        <div className="counter">
-          <h1>React Counter</h1>
-          <button onClick={this.decrementCount}>
-            -{this.props.incrementAmount}
-          </button>
-          <span>{this.state.count}</span>
-          <button onClick={this.incrementCount}>
-            +{this.props.incrementAmount}
-          </button>
+      <div className="counter">
+        <h2>Counter</h2>
+        <div>
+          <button onClick={this.decrement}>-</button>
+          <span>{this.props.count}</span>
+          <button onClick={this.increment}>+</button>
           <br/><br/>
-          <button onClick={this.resetCount}>Reset</button>
+          <button onClick={this.reset}>Reset</button>
         </div>
-    );
+      </div>
+    )
   }
 }
 
-export default Counter;
+function mapStateToProps(state) {
+  return {
+    count: state.count
+  };
+}
+
+export default connect(mapStateToProps)(Counter);

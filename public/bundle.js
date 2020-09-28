@@ -1072,13 +1072,13 @@
           }
           return dispatcher.useContext(Context8, unstable_observedBits);
         }
-        function useState(initialState) {
+        function useState(initialState2) {
           var dispatcher = resolveDispatcher();
-          return dispatcher.useState(initialState);
+          return dispatcher.useState(initialState2);
         }
-        function useReducer3(reducer2, initialArg, init) {
+        function useReducer3(reducer, initialArg, init) {
           var dispatcher = resolveDispatcher();
-          return dispatcher.useReducer(reducer2, initialArg, init);
+          return dispatcher.useReducer(reducer, initialArg, init);
         }
         function useRef3(initialValue) {
           var dispatcher = resolveDispatcher();
@@ -12484,25 +12484,25 @@
         function basicStateReducer(state, action) {
           return typeof action === "function" ? action(state) : action;
         }
-        function mountReducer(reducer2, initialArg, init) {
+        function mountReducer(reducer, initialArg, init) {
           var hook = mountWorkInProgressHook();
-          var initialState;
+          var initialState2;
           if (init !== void 0) {
-            initialState = init(initialArg);
+            initialState2 = init(initialArg);
           } else {
-            initialState = initialArg;
+            initialState2 = initialArg;
           }
-          hook.memoizedState = hook.baseState = initialState;
+          hook.memoizedState = hook.baseState = initialState2;
           var queue = hook.queue = {
             pending: null,
             dispatch: null,
-            lastRenderedReducer: reducer2,
-            lastRenderedState: initialState
+            lastRenderedReducer: reducer,
+            lastRenderedState: initialState2
           };
           var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
           return [hook.memoizedState, dispatch];
         }
-        function updateReducer(reducer2, initialArg, init) {
+        function updateReducer(reducer, initialArg, init) {
           var hook = updateWorkInProgressHook();
           var queue = hook.queue;
           if (!(queue !== null)) {
@@ -12510,7 +12510,7 @@
               throw Error("Should have a queue. This is likely a bug in React. Please file an issue.");
             }
           }
-          queue.lastRenderedReducer = reducer2;
+          queue.lastRenderedReducer = reducer;
           var current2 = currentHook;
           var baseQueue = current2.baseQueue;
           var pendingQueue = queue.pending;
@@ -12565,11 +12565,11 @@
                   newBaseQueueLast = newBaseQueueLast.next = _clone;
                 }
                 markRenderEventTimeAndConfig(updateExpirationTime, update.suspenseConfig);
-                if (update.eagerReducer === reducer2) {
+                if (update.eagerReducer === reducer) {
                   newState = update.eagerState;
                 } else {
                   var action = update.action;
-                  newState = reducer2(newState, action);
+                  newState = reducer(newState, action);
                 }
               }
               update = update.next;
@@ -12590,7 +12590,7 @@
           var dispatch = queue.dispatch;
           return [hook.memoizedState, dispatch];
         }
-        function rerenderReducer(reducer2, initialArg, init) {
+        function rerenderReducer(reducer, initialArg, init) {
           var hook = updateWorkInProgressHook();
           var queue = hook.queue;
           if (!(queue !== null)) {
@@ -12598,7 +12598,7 @@
               throw Error("Should have a queue. This is likely a bug in React. Please file an issue.");
             }
           }
-          queue.lastRenderedReducer = reducer2;
+          queue.lastRenderedReducer = reducer;
           var dispatch = queue.dispatch;
           var lastRenderPhaseUpdate = queue.pending;
           var newState = hook.memoizedState;
@@ -12608,7 +12608,7 @@
             var update = firstRenderPhaseUpdate;
             do {
               var action = update.action;
-              newState = reducer2(newState, action);
+              newState = reducer(newState, action);
               update = update.next;
             } while (update !== firstRenderPhaseUpdate);
             if (!objectIs(newState, hook.memoizedState)) {
@@ -12622,25 +12622,25 @@
           }
           return [newState, dispatch];
         }
-        function mountState(initialState) {
+        function mountState(initialState2) {
           var hook = mountWorkInProgressHook();
-          if (typeof initialState === "function") {
-            initialState = initialState();
+          if (typeof initialState2 === "function") {
+            initialState2 = initialState2();
           }
-          hook.memoizedState = hook.baseState = initialState;
+          hook.memoizedState = hook.baseState = initialState2;
           var queue = hook.queue = {
             pending: null,
             dispatch: null,
             lastRenderedReducer: basicStateReducer,
-            lastRenderedState: initialState
+            lastRenderedState: initialState2
           };
           var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
           return [hook.memoizedState, dispatch];
         }
-        function updateState(initialState) {
+        function updateState(initialState2) {
           return updateReducer(basicStateReducer);
         }
-        function rerenderState(initialState) {
+        function rerenderState(initialState2) {
           return rerenderReducer(basicStateReducer);
         }
         function pushEffect(tag, create, destroy, deps) {
@@ -13029,13 +13029,13 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               mountHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountReducer(reducer2, initialArg, init);
+                return mountReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13045,13 +13045,13 @@
               mountHookTypesDev();
               return mountRef(initialValue);
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               mountHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountState(initialState);
+                return mountState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13117,13 +13117,13 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountReducer(reducer2, initialArg, init);
+                return mountReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13133,13 +13133,13 @@
               updateHookTypesDev();
               return mountRef(initialValue);
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountState(initialState);
+                return mountState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13205,13 +13205,13 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return updateReducer(reducer2, initialArg, init);
+                return updateReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13221,13 +13221,13 @@
               updateHookTypesDev();
               return updateRef();
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return updateState(initialState);
+                return updateState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13293,13 +13293,13 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
               try {
-                return rerenderReducer(reducer2, initialArg, init);
+                return rerenderReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13309,13 +13309,13 @@
               updateHookTypesDev();
               return updateRef();
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
               try {
-                return rerenderState(initialState);
+                return rerenderState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13388,14 +13388,14 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               warnInvalidHookAccess();
               mountHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountReducer(reducer2, initialArg, init);
+                return mountReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13406,14 +13406,14 @@
               mountHookTypesDev();
               return mountRef(initialValue);
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               warnInvalidHookAccess();
               mountHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnMountInDEV;
               try {
-                return mountState(initialState);
+                return mountState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13490,14 +13490,14 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               warnInvalidHookAccess();
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return updateReducer(reducer2, initialArg, init);
+                return updateReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13508,14 +13508,14 @@
               updateHookTypesDev();
               return updateRef();
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               warnInvalidHookAccess();
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return updateState(initialState);
+                return updateState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13592,14 +13592,14 @@
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
             },
-            useReducer: function(reducer2, initialArg, init) {
+            useReducer: function(reducer, initialArg, init) {
               currentHookNameInDev = "useReducer";
               warnInvalidHookAccess();
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return rerenderReducer(reducer2, initialArg, init);
+                return rerenderReducer(reducer, initialArg, init);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -13610,14 +13610,14 @@
               updateHookTypesDev();
               return updateRef();
             },
-            useState: function(initialState) {
+            useState: function(initialState2) {
               currentHookNameInDev = "useState";
               warnInvalidHookAccess();
               updateHookTypesDev();
               var prevDispatcher = ReactCurrentDispatcher.current;
               ReactCurrentDispatcher.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
               try {
-                return rerenderState(initialState);
+                return rerenderState(initialState2);
               } finally {
                 ReactCurrentDispatcher.current = prevDispatcher;
               }
@@ -20059,7 +20059,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     }
     return Object.getPrototypeOf(obj) === proto;
   }
-  function createStore(reducer2, preloadedState, enhancer) {
+  function createStore(reducer, preloadedState, enhancer) {
     var _ref2;
     if (typeof preloadedState === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") {
       throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function.");
@@ -20072,12 +20072,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       if (typeof enhancer !== "function") {
         throw new Error("Expected the enhancer to be a function.");
       }
-      return enhancer(createStore)(reducer2, preloadedState);
+      return enhancer(createStore)(reducer, preloadedState);
     }
-    if (typeof reducer2 !== "function") {
+    if (typeof reducer !== "function") {
       throw new Error("Expected the reducer to be a function.");
     }
-    var currentReducer = reducer2;
+    var currentReducer = reducer;
     var currentState = preloadedState;
     var currentListeners = [];
     var nextListeners = currentListeners;
@@ -20743,11 +20743,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   const mapDispatchToProps_default = [whenMapDispatchToPropsIsFunction, whenMapDispatchToPropsIsMissing, whenMapDispatchToPropsIsObject];
 
   // node_modules/react-redux/es/connect/mapStateToProps.js
-  function whenMapStateToPropsIsFunction(mapStateToProps2) {
-    return typeof mapStateToProps2 === "function" ? wrapMapToPropsFunc(mapStateToProps2, "mapStateToProps") : void 0;
+  function whenMapStateToPropsIsFunction(mapStateToProps3) {
+    return typeof mapStateToProps3 === "function" ? wrapMapToPropsFunc(mapStateToProps3, "mapStateToProps") : void 0;
   }
-  function whenMapStateToPropsIsMissing(mapStateToProps2) {
-    return !mapStateToProps2 ? wrapMapToPropsConstant(function() {
+  function whenMapStateToPropsIsMissing(mapStateToProps3) {
+    return !mapStateToProps3 ? wrapMapToPropsConstant(function() {
       return {};
     }) : void 0;
   }
@@ -20797,19 +20797,19 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       }
     }
   }
-  function verifySubselectors2(mapStateToProps2, mapDispatchToProps2, mergeProps2, displayName) {
-    verify(mapStateToProps2, "mapStateToProps", displayName);
+  function verifySubselectors2(mapStateToProps3, mapDispatchToProps2, mergeProps2, displayName) {
+    verify(mapStateToProps3, "mapStateToProps", displayName);
     verify(mapDispatchToProps2, "mapDispatchToProps", displayName);
     verify(mergeProps2, "mergeProps", displayName);
   }
 
   // node_modules/react-redux/es/connect/selectorFactory.js
-  function impureFinalPropsSelectorFactory(mapStateToProps2, mapDispatchToProps2, mergeProps2, dispatch) {
+  function impureFinalPropsSelectorFactory(mapStateToProps3, mapDispatchToProps2, mergeProps2, dispatch) {
     return function impureFinalPropsSelector(state, ownProps) {
-      return mergeProps2(mapStateToProps2(state, ownProps), mapDispatchToProps2(dispatch, ownProps), ownProps);
+      return mergeProps2(mapStateToProps3(state, ownProps), mapDispatchToProps2(dispatch, ownProps), ownProps);
     };
   }
-  function pureFinalPropsSelectorFactory(mapStateToProps2, mapDispatchToProps2, mergeProps2, dispatch, _ref) {
+  function pureFinalPropsSelectorFactory(mapStateToProps3, mapDispatchToProps2, mergeProps2, dispatch, _ref) {
     var areStatesEqual = _ref.areStatesEqual, areOwnPropsEqual = _ref.areOwnPropsEqual, areStatePropsEqual = _ref.areStatePropsEqual;
     var hasRunAtLeastOnce = false;
     var state;
@@ -20820,29 +20820,29 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     function handleFirstCall(firstState, firstOwnProps) {
       state = firstState;
       ownProps = firstOwnProps;
-      stateProps = mapStateToProps2(state, ownProps);
+      stateProps = mapStateToProps3(state, ownProps);
       dispatchProps = mapDispatchToProps2(dispatch, ownProps);
       mergedProps = mergeProps2(stateProps, dispatchProps, ownProps);
       hasRunAtLeastOnce = true;
       return mergedProps;
     }
     function handleNewPropsAndNewState() {
-      stateProps = mapStateToProps2(state, ownProps);
+      stateProps = mapStateToProps3(state, ownProps);
       if (mapDispatchToProps2.dependsOnOwnProps)
         dispatchProps = mapDispatchToProps2(dispatch, ownProps);
       mergedProps = mergeProps2(stateProps, dispatchProps, ownProps);
       return mergedProps;
     }
     function handleNewProps() {
-      if (mapStateToProps2.dependsOnOwnProps)
-        stateProps = mapStateToProps2(state, ownProps);
+      if (mapStateToProps3.dependsOnOwnProps)
+        stateProps = mapStateToProps3(state, ownProps);
       if (mapDispatchToProps2.dependsOnOwnProps)
         dispatchProps = mapDispatchToProps2(dispatch, ownProps);
       mergedProps = mergeProps2(stateProps, dispatchProps, ownProps);
       return mergedProps;
     }
     function handleNewState() {
-      var nextStateProps = mapStateToProps2(state, ownProps);
+      var nextStateProps = mapStateToProps3(state, ownProps);
       var statePropsChanged = !areStatePropsEqual(nextStateProps, stateProps);
       stateProps = nextStateProps;
       if (statePropsChanged)
@@ -20868,14 +20868,14 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   }
   function finalPropsSelectorFactory(dispatch, _ref2) {
     var initMapStateToProps = _ref2.initMapStateToProps, initMapDispatchToProps = _ref2.initMapDispatchToProps, initMergeProps = _ref2.initMergeProps, options = _objectWithoutPropertiesLoose(_ref2, ["initMapStateToProps", "initMapDispatchToProps", "initMergeProps"]);
-    var mapStateToProps2 = initMapStateToProps(dispatch, options);
+    var mapStateToProps3 = initMapStateToProps(dispatch, options);
     var mapDispatchToProps2 = initMapDispatchToProps(dispatch, options);
     var mergeProps2 = initMergeProps(dispatch, options);
     if (true) {
-      verifySubselectors2(mapStateToProps2, mapDispatchToProps2, mergeProps2, options.displayName);
+      verifySubselectors2(mapStateToProps3, mapDispatchToProps2, mergeProps2, options.displayName);
     }
     var selectorFactory2 = options.pure ? pureFinalPropsSelectorFactory : impureFinalPropsSelectorFactory;
-    return selectorFactory2(mapStateToProps2, mapDispatchToProps2, mergeProps2, dispatch, options);
+    return selectorFactory2(mapStateToProps3, mapDispatchToProps2, mergeProps2, dispatch, options);
   }
 
   // node_modules/react-redux/es/connect/connect.js
@@ -20894,12 +20894,12 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   }
   function createConnect(_temp) {
     var _ref = _temp === void 0 ? {} : _temp, _ref$connectHOC = _ref.connectHOC, connectHOC = _ref$connectHOC === void 0 ? connectAdvanced : _ref$connectHOC, _ref$mapStateToPropsF = _ref.mapStateToPropsFactories, mapStateToPropsFactories = _ref$mapStateToPropsF === void 0 ? mapStateToProps_default : _ref$mapStateToPropsF, _ref$mapDispatchToPro = _ref.mapDispatchToPropsFactories, mapDispatchToPropsFactories = _ref$mapDispatchToPro === void 0 ? mapDispatchToProps_default : _ref$mapDispatchToPro, _ref$mergePropsFactor = _ref.mergePropsFactories, mergePropsFactories = _ref$mergePropsFactor === void 0 ? mergeProps_default : _ref$mergePropsFactor, _ref$selectorFactory = _ref.selectorFactory, selectorFactory2 = _ref$selectorFactory === void 0 ? finalPropsSelectorFactory : _ref$selectorFactory;
-    return function connect2(mapStateToProps2, mapDispatchToProps2, mergeProps2, _ref2) {
+    return function connect2(mapStateToProps3, mapDispatchToProps2, mergeProps2, _ref2) {
       if (_ref2 === void 0) {
         _ref2 = {};
       }
       var _ref3 = _ref2, _ref3$pure = _ref3.pure, pure = _ref3$pure === void 0 ? true : _ref3$pure, _ref3$areStatesEqual = _ref3.areStatesEqual, areStatesEqual = _ref3$areStatesEqual === void 0 ? strictEqual : _ref3$areStatesEqual, _ref3$areOwnPropsEqua = _ref3.areOwnPropsEqual, areOwnPropsEqual = _ref3$areOwnPropsEqua === void 0 ? shallowEqual2 : _ref3$areOwnPropsEqua, _ref3$areStatePropsEq = _ref3.areStatePropsEqual, areStatePropsEqual = _ref3$areStatePropsEq === void 0 ? shallowEqual2 : _ref3$areStatePropsEq, _ref3$areMergedPropsE = _ref3.areMergedPropsEqual, areMergedPropsEqual = _ref3$areMergedPropsE === void 0 ? shallowEqual2 : _ref3$areMergedPropsE, extraOptions = _objectWithoutPropertiesLoose(_ref3, ["pure", "areStatesEqual", "areOwnPropsEqual", "areStatePropsEqual", "areMergedPropsEqual"]);
-      var initMapStateToProps = match(mapStateToProps2, mapStateToPropsFactories, "mapStateToProps");
+      var initMapStateToProps = match(mapStateToProps3, mapStateToPropsFactories, "mapStateToProps");
       var initMapDispatchToProps = match(mapDispatchToProps2, mapDispatchToPropsFactories, "mapDispatchToProps");
       var initMergeProps = match(mergeProps2, mergePropsFactories, "mergeProps");
       return connectHOC(selectorFactory2, _extends({
@@ -20907,7 +20907,7 @@ For more info, visit https://fb.me/react-mock-scheduler`);
         getDisplayName: function getDisplayName(name) {
           return "Connect(" + name + ")";
         },
-        shouldHandleStateChanges: Boolean(mapStateToProps2),
+        shouldHandleStateChanges: Boolean(mapStateToProps3),
         initMapStateToProps,
         initMapDispatchToProps,
         initMergeProps,
@@ -21047,46 +21047,59 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   setBatch(react_dom.unstable_batchedUpdates);
 
   // src/counterReducer.js
+  const initialState = {
+    count: 0
+  };
+  const counterReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case "INCREMENT":
+        return {count: state.count + 1};
+      case "DECREMENT":
+        return {count: state.count - 1};
+      case "RESET":
+        return {count: 0};
+      default:
+        return state;
+    }
+  };
+  const counterReducer_default = counterReducer;
 
   // src/Counter.js
   const React4 = __toModule(require_react());
   const ReactDOM = __toModule(require_react_dom());
   class Counter extends React4.Component {
-    constructor(props) {
-      super(props);
-      this.state = {count: 0};
-    }
-    resetCount = () => {
-      this.setState({count: 0});
+    increment = () => {
+      this.props.dispatch({type: "INCREMENT"});
     };
-    incrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count + props.incrementAmount
-      }));
+    decrement = () => {
+      this.props.dispatch({type: "DECREMENT"});
     };
-    decrementCount = () => {
-      this.setState((prevState, props) => ({
-        count: prevState.count - props.incrementAmount
-      }));
+    reset = () => {
+      this.props.dispatch({type: "RESET"});
     };
     render() {
       return React4.createElement("div", {
         className: "counter"
-      }, React4.createElement("h1", null, "React Counter"), React4.createElement("button", {
-        onClick: this.decrementCount
-      }, "-", this.props.incrementAmount), React4.createElement("span", null, this.state.count), React4.createElement("button", {
-        onClick: this.incrementCount
-      }, "+", this.props.incrementAmount), React4.createElement("br", null), React4.createElement("br", null), React4.createElement("button", {
-        onClick: this.resetCount
-      }, "Reset"));
+      }, React4.createElement("h2", null, "Counter"), React4.createElement("div", null, React4.createElement("button", {
+        onClick: this.decrement
+      }, "-"), React4.createElement("span", null, this.props.count), React4.createElement("button", {
+        onClick: this.increment
+      }, "+"), React4.createElement("br", null), React4.createElement("br", null), React4.createElement("button", {
+        onClick: this.reset
+      }, "Reset")));
     }
   }
-  const Counter_default = Counter;
+  function mapStateToProps2(state) {
+    return {
+      count: state.count
+    };
+  }
+  const Counter_default = connect_default(mapStateToProps2)(Counter);
 
   // src/index.js
   const React5 = __toModule(require_react());
   const ReactDOM2 = __toModule(require_react_dom());
-  const store = createStore(reducer);
+  const store = createStore(counterReducer_default);
   ReactDOM2.render(React5.createElement(Provider_default, {
     store
   }, React5.createElement(Counter_default, null)), document.getElementById("root"));
