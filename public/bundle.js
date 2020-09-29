@@ -19442,7 +19442,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       };
     }
     handleVideoButtonClick = (index) => {
-      console.log("index", index);
       this.setState({selectedVideoIndex: index});
     };
     render() {
