@@ -19375,6 +19375,11 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   // src/VideoButton.js
   const React2 = __toModule(require_react());
   class VideoButton extends React2.Component {
+    handleClick = () => {
+      if (!this.props.isSelected) {
+        this.props.onClick(this.props.index);
+      }
+    };
     render() {
       var {
         videoTitle,
@@ -19386,11 +19391,6 @@ For more info, visit https://fb.me/react-mock-scheduler`);
       if (isSelected) {
         buttonClassName = "video selected";
       }
-      handleClick = () => {
-        if (!this.props.isSelected) {
-          this.props.onClick(this.props.index);
-        }
-      };
       return React2.createElement("div", {
         className: buttonClassName,
         onClick: this.handleClick

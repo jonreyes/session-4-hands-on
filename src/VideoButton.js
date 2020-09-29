@@ -2,6 +2,12 @@ import * as React from 'react';
 
 class VideoButton extends React.Component {
 
+    handleClick = () => {
+      if (!this.props.isSelected) {
+        this.props.onClick(this.props.index);
+      }
+    };
+
     render() {
       // Get the required props to be used in this component
         var {
@@ -17,12 +23,7 @@ class VideoButton extends React.Component {
             buttonClassName = 'video selected';
         }
       
-        handleClick = () => {
-          if (!this.props.isSelected) {
-            this.props.onClick(this.props.index);
-          }
-        };
-      // Make sure you pass the right prop values in the blanks provided
+        // Make sure you pass the right prop values in the blanks provided
 
         return (
             <div

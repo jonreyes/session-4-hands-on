@@ -14,9 +14,8 @@ class VideoPlayer extends React.Component {
     }
 
     handleVideoButtonClick = (index) => {
-      console.log('index', index);
+       console.log('index', index);
         this.setState({ selectedVideoIndex: index });
-        
     };
 
     render() {
