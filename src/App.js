@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-class App extends React.Component {
+/*class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { count: 0 };
@@ -40,6 +40,33 @@ class App extends React.Component {
         </div>
     );
   }
+}*/
+
+const App = (props)=>{
+  const [count,setCount] = React.useState(0);
+  incrementCount = ()=>{
+    setCount(count+props.incrementAmount);
+  }
+  decrementCount = ()=>{
+    setCount(count-props.incrementAmount);
+  }
+  resetCount = ()=>{
+    setCount(0);
+  }
+  return (
+    <div className="counter">
+      <h1>React Counter</h1>
+      <button onClick={decrementCount}>
+      -{props.incrementAmount}
+      </button>
+      <span>{count}</span>
+      <button onClick={incrementCount}>
+      +{props.incrementAmount}
+      </button>
+      <br/><br/>
+      <button onClick={resetCount}>Reset</button>
+    </div>
+  );
 }
 
 export default App;
