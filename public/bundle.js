@@ -19344,7 +19344,9 @@ For more info, visit https://fb.me/react-mock-scheduler`);
     render() {
       return React.createElement("div", {
         className: "car"
-      }, React.createElement("h1", null, "My ", this.state.brand), React.createElement("p", null, "It is a ", this.state.color, " ", this.state.model, " from ", this.state.year, "."), React.createElement("button", {
+      }, React.createElement("h1", null, "My ", this.state.brand), React.createElement("p", null, "It is a ", React.createElement("b", {
+        style: {color: this.state.color}
+      }, this.state.color), " ", this.state.model, " from ", this.state.year, "."), React.createElement("button", {
         type: "button",
         onClick: this.changeColor
       }, "Change color"));
