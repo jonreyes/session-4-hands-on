@@ -19331,11 +19331,19 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   class Car extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        brand: "Honda",
+        model: "Civic",
+        color: "black",
+        year: "2010"
+      };
+      this.changeColor = this.changeColor.bind(this);
     }
     changeColor = () => {
+      this.setState({color: "gray"});
     };
     render() {
-      return React.createElement("div", null, React.createElement("h1", null, 'My "Brand"'), React.createElement("p", null, 'It is a "color" "model" from "year".'), React.createElement("button", {
+      return React.createElement("div", null, React.createElement("h1", null, "My ", this.state.brand), React.createElement("p", null, "It is a ", this.state.color, " ", this.state.model, " from ", this.state.year, "."), React.createElement("button", {
         type: "button",
         onClick: this.changeColor
       }, "Change color"));

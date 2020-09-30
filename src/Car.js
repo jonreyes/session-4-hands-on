@@ -7,18 +7,26 @@ class Car extends React.Component {
     super(props);
     //Initialize state for car 
     //e.g. brand/model/color/year
+    this.state = {
+      brand: 'Honda',
+      model: 'Civic',
+      color: 'black',
+      year: '2010'
+    }
+    this.changeColor = this.changeColor.bind(this);
   }
   
   changeColor = () => {
     // Change color state
+    this.setState({color:'gray'});
   }
 
   render() {
     return (
       <div>
-        <h1>My "Brand"</h1>
+        <h1>My {this.state.brand}</h1>
         <p>
-          It is a "color" "model" from "year".
+          It is a {this.state.color} {this.state.model} from {this.state.year}.
         </p>
         <button
           type="button"
