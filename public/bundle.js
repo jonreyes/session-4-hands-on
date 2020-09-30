@@ -19331,13 +19331,27 @@ For more info, visit https://fb.me/react-mock-scheduler`);
   class App extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        count: 0
+      };
+      this.incrementCount = this.incrementCount.bind(this);
+      this.decrementCount = this.decrementCount.bind(this);
     }
+    incrementCount = () => {
+      this.setState({count: this.state.count + this.props.incrementAmount});
+    };
+    decrementCount = () => {
+      this.setState({count: this.state.count - this.props.incrementAmount});
+    };
+    resetCount = () => {
+      this.setState({count: 0});
+    };
     render() {
       return React.createElement("div", {
         className: "counter"
       }, React.createElement("h1", null, "React Counter"), React.createElement("button", {
         onClick: this.decrementCount
-      }, "-", this.props.incrementAmount), React.createElement("span", null, "Read current count in here"), React.createElement("button", {
+      }, "-", this.props.incrementAmount), React.createElement("span", null, this.state.count), React.createElement("button", {
         onClick: this.incrementCount
       }, "+", this.props.incrementAmount), React.createElement("br", null), React.createElement("br", null), React.createElement("button", {
         onClick: this.resetCount
