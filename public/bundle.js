@@ -7970,7 +7970,7 @@
           startText = getText();
           return true;
         }
-        function reset2() {
+        function reset() {
           root = null;
           startText = null;
           fallbackText = null;
@@ -8341,7 +8341,7 @@
           if (isComposing) {
             if (topLevelType === TOP_COMPOSITION_END || !canUseCompositionEvent && isFallbackCompositionEnd(topLevelType, nativeEvent)) {
               var chars = getData();
-              reset2();
+              reset();
               isComposing = false;
               return chars;
             }
